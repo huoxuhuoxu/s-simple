@@ -1,6 +1,6 @@
 {
   "name": "s-touch",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "一个简单的触摸模块",
   "main": "index.js",
   "scripts": {
@@ -11,6 +11,7 @@
     "simple",
     "module"
   ],
+  "repository": "https://github/huoxuhuoxu/s-simple.git",
   "author": "huoxu_huoxu",
   "email": "530607199@qq.com",
   "license": "ISC"
