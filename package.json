@@ -1,0 +1,17 @@
+{
+  "name": "s-touch",
+  "version": "1.0.0",
+  "description": "一个简单的触摸模块",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "touch",
+    "simple",
+    "module"
+  ],
+  "author": "huoxu_huoxu",
+  "email": "530607199@qq.com",
+  "license": "ISC"
+}
