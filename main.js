@@ -139,7 +139,7 @@ var singleTouch = function singleTouch() {
 	};
 };
 
-var SINGLE_FOLLOW_TOUCH = function SINGLE_FOLLOW_TOUCH() {
+var singleFollowTouch = function singleFollowTouch() {
 	var dom = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 'body';
 
 	var _ref3 = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : DEFAULT_ARGUMENTS,
@@ -190,7 +190,7 @@ var EdgeNumiceTow = function EdgeNumiceTow(arr) {
 	});
 };
 
-var MULTIPLE_FOLLOW_TOUCH = function MULTIPLE_FOLLOW_TOUCH() {
+var multipleFollowTouch = function multipleFollowTouch() {
 	var dom = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 'body';
 
 	var _ref4 = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : DEFAULT_ARGUMENTS,

@@ -84,7 +84,7 @@ const singleTouch = (dom='body', {touchmove=FN_NULL, touchstart=FN_NULL, touchen
 };
 
 
-const SINGLE_FOLLOW_TOUCH = (dom='body', {touchmove=FN_NULL, touchstart=FN_NULL, touchend=FN_NULL} = DEFAULT_ARGUMENTS) => {
+const singleFollowTouch = (dom='body', {touchmove=FN_NULL, touchstart=FN_NULL, touchend=FN_NULL} = DEFAULT_ARGUMENTS) => {
 	let oDom,
 		x,
 		y;
@@ -131,7 +131,7 @@ const EdgeNumiceTow = (arr) =>
 );
 
 
-const MULTIPLE_FOLLOW_TOUCH = (dom='body', {touchmove=FN_NULL, touchstart=FN_NULL, touchend=FN_NULL} = DEFAULT_ARGUMENTS) => {
+const multipleFollowTouch = (dom='body', {touchmove=FN_NULL, touchstart=FN_NULL, touchend=FN_NULL} = DEFAULT_ARGUMENTS) => {
 	let oDom = document.querySelector(dom),
 		iOldDiff,
 		iPoint,
