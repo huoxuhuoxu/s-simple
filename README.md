@@ -2,19 +2,19 @@
 
 ##### 一个简单的触摸模块
 	单点触摸 无跟随, singleTouch: 支持单元素,支持x轴
-	单点触摸 跟随, SINGLE_FOLLOW_TOUCH: 支持单元素
-	多点手势 跟随 MULTIPLE_FOLLOW_TOUCH: 支持单元素, 根据两指进行计算:两指直线距离
+	单点触摸 跟随, singleFollowTouch: 支持单元素
+	多点手势 跟随 multipleFollowTouch: 支持单元素, 根据两指进行计算:两指直线距离
 	
 ##### 安装:
-	npm install s-touch --save-dev
+	npm install s-touch --save
 	
 ##### 参数:
 	(dom='body',{touchmove, touchstart, touchend})
 	
 ###### singleTouch
 		
-	import TOUCH from 's-touch';
-	TOUCH.singleTouch('body', {
+	import { singleTouch } from 's-touch';
+	singleTouch('body', {
 		touchmove: (d, end) => {
 			console.log(d);
 			end();
@@ -26,8 +26,8 @@
 		
 ###### singleFollowTouch
 	
-	import TOUCH from 's-touch';
-	TOUCH.singleFollowTouch("body", {
+	import { singleFollowTouch } from 's-touch';
+	singleFollowTouch("body", {
 		touchmove: ({x, y}, e) => {
 			e.preventDefault();
 		},
@@ -44,11 +44,11 @@
 	
 ##### multipleFollowTouch
 	
-	import TOUCH from 's-touch';
+	import { multipleFollowTouch } from 's-touch';
 	let oImage = document.getElementsByClassName('image_test')[0],
 		iScale = 1,
 		iNewScale = null;
-	TOUCH.multipleFollowTouch('body', {
+	multipleFollowTouch('body', {
 		touchstart: (e) => {
 			e.preventDefault();
 		},
