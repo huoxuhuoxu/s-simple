@@ -1,9 +1,9 @@
 
 /*
 	@todo
-	单点触摸 无跟随, SINGLE_TOUCH: 只支持单元素,只支持左右
-	单点触摸 跟随, SINGLE_FOLLOW_TOUCH: 只支持单元素
-	多点手势 跟随 MULTIPLE_FOLLOW_TOUCH: 只支持单元素, 根据两指进行计算:两指直线距离
+	单点触摸 无跟随, singleTouch: 只支持单元素,只支持左右
+	单点触摸 跟随, singleFollowTouch: 只支持单元素
+	多点手势 跟随 multipleFollowTouch: 只支持单元素, 根据两指进行计算:两指直线距离
 
 */
 
@@ -17,7 +17,7 @@
 
 /*
 	@逻辑参数:
-		SINGLE_TOUCH:
+		singleTouch:
 			sFlag: 手指划动方向
 			oDirective: 根据sFlag转换1/-1
 			bEnd: 是否可以触发划动
@@ -38,7 +38,7 @@ const DEFAULT_ARGUMENTS = {
 	touchend: FN_NULL
 };
 
-const SINGLE_TOUCH = (dom='body', {touchmove=FN_NULL, touchstart=FN_NULL, touchend=FN_NULL} = DEFAULT_ARGUMENTS) => {
+const singleTouch = (dom='body', {touchmove=FN_NULL, touchstart=FN_NULL, touchend=FN_NULL} = DEFAULT_ARGUMENTS) => {
 	let oDom = document.querySelector(dom),
 		oDirective = {
 			"ltor": -1,
@@ -185,20 +185,11 @@ const MULTIPLE_FOLLOW_TOUCH = (dom='body', {touchmove=FN_NULL, touchstart=FN_NUL
 };
 
 
-
-
-
-const SIMPLE_TOUCH = {
-	singleTouch: SINGLE_TOUCH,
-	singleFollowTouch: SINGLE_FOLLOW_TOUCH,
-	multipleFollowTouch: MULTIPLE_FOLLOW_TOUCH,
-};
-
-
-export default SIMPLE_TOUCH;
-
-
-
+export {
+	singleTouch,
+	singleFollowTouch,
+	multipleFollowTouch
+}
 
 
 
