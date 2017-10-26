@@ -67,7 +67,7 @@ var singleTouch = function singleTouch() {
 	    _ref$touchend = _ref.touchend,
 	    touchend = _ref$touchend === undefined ? FN_NULL : _ref$touchend;
 
-	var oDom = document.querySelector(dom),
+	var oDom = void 0,
 	    oDirective = {
 		"ltor": -1,
 		"rtol": 1
@@ -75,6 +75,12 @@ var singleTouch = function singleTouch() {
 	    bEnd = false,
 	    x = void 0,
 	    sFlag = void 0;
+
+	if (typeof dom === "string") {
+		oDom = document.querySelector(dom);
+	} else {
+		oDom = dom;
+	}
 
 	oDom.ontouchstart = function (e) {
 		var oEvent = e || event;
@@ -205,6 +211,12 @@ var multipleFollowTouch = function multipleFollowTouch() {
 	    iOldDiff = void 0,
 	    iPoint = void 0,
 	    fnOperation = void 0;
+
+	if (typeof dom === "string") {
+		oDom = document.querySelector(dom);
+	} else {
+		oDom = dom;
+	}
 
 	var STATIC_INITIAL = function STATIC_INITIAL(v, e) {
 		if (fnOperation) {

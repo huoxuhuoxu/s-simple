@@ -39,7 +39,7 @@ const DEFAULT_ARGUMENTS = {
 };
 
 const singleTouch = (dom='body', {touchmove=FN_NULL, touchstart=FN_NULL, touchend=FN_NULL} = DEFAULT_ARGUMENTS) => {
-	let oDom = document.querySelector(dom),
+	let oDom,
 		oDirective = {
 			"ltor": -1,
 			"rtol": 1
@@ -47,6 +47,12 @@ const singleTouch = (dom='body', {touchmove=FN_NULL, touchstart=FN_NULL, touchen
 		bEnd = false,
 		x, 
 		sFlag;
+
+    if(typeof dom === "string"){
+        oDom = document.querySelector(dom);
+    }else{
+        oDom = dom;
+    }
 
 	oDom.ontouchstart = function(e){
 		let oEvent = e || event;
@@ -137,6 +143,12 @@ const multipleFollowTouch = (dom='body', {touchmove=FN_NULL, touchstart=FN_NULL,
 		iPoint,
 		fnOperation;
 
+    if(typeof dom === "string"){
+        oDom = document.querySelector(dom);
+    }else{
+        oDom = dom;
+    }
+    
 	const STATIC_INITIAL = (v, e) => {
 		if(fnOperation){
 			fnOperation(v, e);
