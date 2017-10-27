@@ -70,11 +70,15 @@ var singleTouch = function singleTouch() {
 	var oDom = void 0,
 	    oDirective = {
 		"ltor": -1,
-		"rtol": 1
+		"rtol": 1,
+		"ttob": 1,
+		"btot": -1
 	},
 	    bEnd = false,
 	    x = void 0,
-	    sFlag = void 0;
+	    y = void 0,
+	    sFlagX = void 0,
+	    sFlagY = void 0;
 
 	if (typeof dom === "string") {
 		oDom = document.querySelector(dom);
@@ -85,11 +89,12 @@ var singleTouch = function singleTouch() {
 	oDom.ontouchstart = function (e) {
 		var oEvent = e || event;
 		x = oEvent.changedTouches[0].clientX;
+		y = oEvent.changedTouches[0].clientY;
 		touchstart(oEvent);
 	};
 	oDom.ontouchmove = function () {
 		var _ref2 = (0, _asyncToGenerator3.default)( /*#__PURE__*/_regenerator2.default.mark(function _callee(e) {
-			var oEvent, cX;
+			var oEvent, cX, cY, dfX, dfY;
 			return _regenerator2.default.wrap(function _callee$(_context) {
 				while (1) {
 					switch (_context.prev = _context.next) {
@@ -97,36 +102,44 @@ var singleTouch = function singleTouch() {
 							oEvent = e || event;
 
 							if (!bEnd) {
-								_context.next = 4;
+								_context.next = 5;
 								break;
 							}
 
 							x = oEvent.changedTouches[0].clientX;
+							y = oEvent.changedTouches[0].clientY;
 							return _context.abrupt("return");
 
-						case 4:
+						case 5:
 							bEnd = true;
 
 							cX = oEvent.changedTouches[0].clientX;
+							cY = oEvent.changedTouches[0].clientY;
+							dfX = x - cX;
+							dfY = y - cY;
 
-							if (x - cX > 0) {
-								sFlag = 'ltor';
-							} else {
-								sFlag = 'rtol';
-							}
+							dfX > 0 ? sFlagX = 'ltor' : sFlagX = 'rtol';
+							dfY > 0 ? sFlagY = 'btot' : sFlagY = 'ttob';
 							x = cX;
-							_context.next = 10;
+							y = cY;
+							_context.next = 16;
 							return new _promise2.default(function (resolve, reject) {
-								touchmove(oDirective[sFlag], resolve, reject, oEvent);
+								var oDirec = {
+									x: oDirective[sFlagX],
+									y: oDirective[sFlagY],
+									dx: dfX,
+									dy: dfY
+								};
+								touchmove(oDirec, resolve, reject, oEvent);
 							}).catch(function (err) {
 								console.log(err);
 							});
 
-						case 10:
+						case 16:
 
 							bEnd = false;
 
-						case 11:
+						case 17:
 						case "end":
 							return _context.stop();
 					}
@@ -140,7 +153,7 @@ var singleTouch = function singleTouch() {
 	}();
 	oDom.ontouchend = function (e) {
 		var oEvent = e || event;
-		x = null, sFlag = null;
+		x = null, sFlagX = null, y = null, sFlagY = null;
 		touchend(oEvent);
 	};
 };

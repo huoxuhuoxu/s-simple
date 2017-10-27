@@ -21,8 +21,13 @@
 		}
 	});
 	
-	注: touchmove = (d: 方向, end: 结束此次跟随)
-		
+	注: touchmove = (d: 方向对象, end: 结束此次跟随)
+	d = {
+		x: x轴方向,
+		y: y轴方向,
+		dx: 此次移动的x轴差值,
+		dy: 此次移动的y轴差值
+	}
 		
 ###### singleFollowTouch
 	

@@ -42,11 +42,15 @@ const singleTouch = (dom='body', {touchmove=FN_NULL, touchstart=FN_NULL, touchen
 	let oDom,
 		oDirective = {
 			"ltor": -1,
-			"rtol": 1
+			"rtol": 1,
+			"ttob": 1,
+			"btot": -1
 		},
 		bEnd = false,
 		x, 
-		sFlag;
+		y,
+		sFlagX,
+		sFlagY;
 
     if(typeof dom === "string"){
         oDom = document.querySelector(dom);
@@ -57,25 +61,35 @@ const singleTouch = (dom='body', {touchmove=FN_NULL, touchstart=FN_NULL, touchen
 	oDom.ontouchstart = function(e){
 		let oEvent = e || event;
 		x = oEvent.changedTouches[0].clientX;
+		y = oEvent.changedTouches[0].clientY;
 		touchstart(oEvent);
 	};
 	oDom.ontouchmove = async function(e){
 		let oEvent = e || event;
 		if(bEnd){
 			x = oEvent.changedTouches[0].clientX;
+			y = oEvent.changedTouches[0].clientY;
 			return;
 		}
 		bEnd = true;
 
 		let cX = oEvent.changedTouches[0].clientX;
-		if(x - cX > 0){
-			sFlag = 'ltor';
-		}else{
-			sFlag = 'rtol';
-		} 
+		let cY = oEvent.changedTouches[0].clientY;
+
+		let dfX = x - cX;
+		let dfY = y - cY;
+		dfX > 0 ? sFlagX = 'ltor' : sFlagX = 'rtol';
+		dfY > 0 ? sFlagY = 'btot' : sFlagY = 'ttob';
 		x = cX;
+		y = cY;
 		await new Promise((resolve, reject) => {
-			touchmove(oDirective[sFlag], resolve, reject, oEvent);
+			let oDirec = {
+				x: oDirective[sFlagX],
+				y: oDirective[sFlagY],
+				dx: dfX,
+				dy: dfY
+			};
+			touchmove(oDirec, resolve, reject, oEvent);
 		}).catch(function(err){
 			console.log(err);
 		});
@@ -84,7 +98,7 @@ const singleTouch = (dom='body', {touchmove=FN_NULL, touchstart=FN_NULL, touchen
 	};
 	oDom.ontouchend = function(e){
 		let oEvent = e || event;
-		x = null, sFlag = null;
+		x = null, sFlagX = null, y = null, sFlagY = null;
 		touchend(oEvent);
 	};
 };
